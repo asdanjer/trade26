@@ -37,8 +37,8 @@ if ($result->num_rows > 0) {
                 <td title='".htmlspecialchars($row["item_description"])."'>".mb_strimwidth(htmlspecialchars($row["item_description"]), 0, 30, "...")."</td>
                 <td>".htmlspecialchars($row["quantity"])." ".htmlspecialchars(explode(" ", $row["type"])[0])."</td>
                 <td>".htmlspecialchars($convertedPrice)."</td>
-                <td class='map-hover' data-map-location='".htmlspecialchars($row["latitude"]).",".htmlspecialchars($row["longitude"])."' data-location='".htmlspecialchars($row["location"])."'>".htmlspecialchars($row["address"])."</td>
-                <td class='map-hover' data-map-location='".htmlspecialchars($row["latitude"]).",".htmlspecialchars($row["longitude"])."' data-location='".htmlspecialchars($row["location"])."'>".htmlspecialchars($row["location"])."</td>
+<td class='map-hover' data-latitude='".htmlspecialchars($row["latitude"])."' data-longitude='".htmlspecialchars($row["longitude"])."' data-location='".htmlspecialchars(strtolower($row["location"]))."'>".htmlspecialchars($row["address"])."</td>
+<td class='map-hover' data-latitude='".htmlspecialchars($row["latitude"])."' data-longitude='".htmlspecialchars($row["longitude"])."' data-location='".htmlspecialchars(strtolower($row["location"]))."'>".htmlspecialchars($row["location"])."</td>
                 <td>".htmlspecialchars($row["seller"])."</td>
                 <td>
                     <label class='switch'>
@@ -55,11 +55,7 @@ if ($result->num_rows > 0) {
 echo "</tbody></table>";
 $conn->close();
 ?>
-<!-- Add a dedicated container for the map next to the table -->
-<div id="mapContainer" style="width: 500px; height: 500px; float: right;">
-    <img id="minecraftMap" src="" style="width: 100%; height: auto; display: none;">
-    <!-- This image element will be used to display the map -->
-</div>
+
 
 <style>
 .switch {
@@ -121,18 +117,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-.tooltip-map {
-    position: relative; /* Container relative to position dot absolutely inside */
-    display: inline-block; /* Adjust as needed */
-    /* Other styles */
-}
-
-.tooltip-map img {
-  display: block;
-  width: 100%; /* Make the image fully occupy the tooltip */
-  height: auto; /* Maintain aspect ratio */
-}
-
 
 </style>
 
@@ -155,65 +139,5 @@ $(document).ready(function(){
             }
         });
     });
-
-
 });
-$('.map-hover').hover(function() {
-    var location = $(this).data('location');
-    var mapLocation = $(this).data('map-location').split(',');
-        if (location === 'Shopping District') {
-            mapImage = 'sd.png';
-        } else if (location === 'End') {
-            mapImage = 'end.png';
-        } else {
-            return;
-        }
-
-    // Set the coordinates as data attributes
-    var tooltipContent = $('<div class="tooltip-map"><img src="' + mapImage + '" data-original-x="' + mapLocation[0] + '" data-original-y="' + mapLocation[1] + '" onload="positionDot(this)"></div>');
-    $(this).append(tooltipContent);
-    tooltipContent.show();
-}, function() {
-    $('.tooltip-map').remove();
-});
-
-function positionDotOnMinecraftMap(imgElement, minecraftX, minecraftY, corner1, corner2) {
-    // corner1 and corner2 are objects with x and y properties representing the coordinates
-    // of the top-left and bottom-right corners of the map in Minecraft coordinates
-
-    var currentWidth = imgElement.width;
-    var currentHeight = imgElement.height;
-
-    // Calculate the width and height of the Minecraft map area using the corners
-    var minecraftMapWidth = Math.abs(corner2.x - corner1.x);
-    var minecraftMapHeight = Math.abs(corner2.y - corner1.y);
-
-    // Calculate the position of the dot relative to the top-left corner of the Minecraft map
-    var relativeX = minecraftX - corner1.x;
-    var relativeY = minecraftY - corner1.y;
-
-    // Calculate scaling factors based on the current image size and the Minecraft map size
-    var scaleX = currentWidth / minecraftMapWidth;
-    var scaleY = currentHeight / minecraftMapHeight;
-
-    // Calculate new position for the dot on the image
-    var newX = relativeX * scaleX;
-    var newY = relativeY * scaleY;
-
-    // Create and position the dot
-    var dot = $('<div class="map-dot"></div>');
-    dot.css({
-        position: 'absolute',
-        top: newY + 'px',
-        left: newX + 'px',
-        width: '10px',
-        height: '10px',
-        borderRadius: '50%',
-        backgroundColor: 'red',
-        transform: 'translate(-50%, -50%)' // Center the dot on the exact location
-    });
-
-    // Append the dot to the parent of the imgElement
-    $(imgElement).parent().append(dot);
-}
 </script>
