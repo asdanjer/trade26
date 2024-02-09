@@ -29,7 +29,7 @@ echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstra
             </div>
         </div>
     </nav>';
-$conn = new mysqli('DB_SERVER', 'DB_USERNAME', 'DB_PASSWORD', 'DB_DATABASE');
+$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 // Check connection
 if ($conn->connect_error) {

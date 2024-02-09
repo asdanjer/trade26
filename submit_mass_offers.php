@@ -8,7 +8,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <?php
 include 'config.php';
 // Database connection
-$conn = new mysqli('DB_SERVER', 'DB_USERNAME', 'DB_PASSWORD', 'DB_DATABASE');
+$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 // Check connection
 if ($conn->connect_error) {
