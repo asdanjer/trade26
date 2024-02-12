@@ -49,7 +49,7 @@ if (isset($_SESSION['success_message'])) {
             </div>
 			<!-- Inside the <form> element, add the following field for the owner's name -->
 <div class="mb-3">
-    <label for="ownerName" class="form-label">Owner's Name</label>
+    <label for="ownerName" class="form-label">Owner's Name (Pls use exact Minecraft username of main account)</label>
     <input type="text" class="form-control" id="ownerName" name="owner_name" required>
 </div>
 

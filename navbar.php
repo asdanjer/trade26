@@ -24,6 +24,9 @@
           <a class="nav-link" href="add_shop.php">Add Shop</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="map.php">Map with Adresses for SD</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="logout.php">Logout</a>
         </li>
       </ul>

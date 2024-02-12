@@ -212,8 +212,8 @@ function calculateDotPosition(loc,latitude, longitude) {
 			mapTopLeft = {lat: -1192, longi: 1657}; 
 			mapBottomRight = {lat: -1061, longi: 1831}; 
     } else if (loc === "end.png") {
-			mapTopLeft = {lat: 0, longi: 0}; 
-			mapBottomRight = {lat: -2000, longi: 2000};		
+			mapTopLeft = {lat: 13, longi: -50}; 
+			mapBottomRight = {lat: 99, longi: 44};		
     }
 
 	console.log("input: ",latitude,longitude)
