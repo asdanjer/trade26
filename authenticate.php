@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include 'src-a/config.php';
 
 if ($_POST['password'] == PASSWORD) {
     // Set session variables and redirect to the protected page

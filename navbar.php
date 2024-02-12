@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link" href="add_shop.php">Add Shop</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Logout</a>
+        </li>
       </ul>
       <button class="btn btn-outline-success" type="button" id="onlinePlayersBtn" data-bs-toggle="modal" data-bs-target="#onlinePlayersModal">Online Players</button>
     </div>
