@@ -52,7 +52,7 @@ $sql = "INSERT INTO shop (name, location, address, map_location, owner_id) VALUE
 
 if ($conn->query($sql) === TRUE) {
     $_SESSION['success_message'] = "New shop added successfully";
-    header("Location: add_shop.php");
+    header("Location: ../add_shop.php");
     exit;
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

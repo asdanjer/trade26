@@ -127,7 +127,7 @@ $(document).ready(function(){
         var inStock = $(this).is(':checked') ? 1 : 0;
         
         $.ajax({
-            url: 'update_stock_status.php',
+            url: 'src-a/update_stock_status.php',
             type: 'POST',
             data: { 'offer_id': offerId, 'in_stock': inStock },
             success: function(response){

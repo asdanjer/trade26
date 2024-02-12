@@ -82,7 +82,7 @@ $(document).ready(function(){
 		debounceTimeout = setTimeout(() => {
         var inputVal = $(this).val();
         $.ajax({
-            url: "get_sellers.php",
+            url: "src-a/get_sellers.php",
             type: "POST",
             data: { searchTerm: inputVal },
             success: function(data){
@@ -109,7 +109,7 @@ $(document).ready(function(){
     });
 function loadShopsForSeller(selectedSeller) {
     $.ajax({
-        url: "get_shops_by_seller.php",
+        url: "src-a/get_shops_by_seller.php",
         type: "POST",
         data: { sellerName: selectedSeller },
         dataType: "json",
@@ -132,7 +132,7 @@ function loadShopsForSeller(selectedSeller) {
 
             $.ajax({
                 type: "POST",
-                url: "submit_offer.php", // Your PHP processing file path
+                url: "src-a/submit_offer.php", // Your PHP processing file path
                 data: formData,
                 success: function(response) {
                     // Handle success (e.g., display a success message)
@@ -154,7 +154,7 @@ function loadShopsForSeller(selectedSeller) {
     debounceTimeout = setTimeout(() => {
         var inputVal = $(this).val();
         $.ajax({
-            url: "get_items.php", // PHP script to fetch item names
+            url: "src-a/get_items.php", // PHP script to fetch item names
             type: "POST",
             dataType: "json", // This ensures the response is parsed as JSON automatically
             data: { searchTerm: inputVal },

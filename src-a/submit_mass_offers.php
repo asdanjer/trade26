@@ -43,7 +43,7 @@ for ($i = 0; $i < count($_POST['item_name']); $i++) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-header("Location: add_mass.php");
+header("Location: ../add_mass.php");
 exit;
 // Functions to handle owner and shop logic
 function getOrCreateOwnerId($conn, $owner_name) {

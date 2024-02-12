@@ -151,7 +151,7 @@ $(document).ready(function() {
 
     function loadOffersTable(searchTerm) {
         var currencyType = $('#currencyType').val();
-        $("#offersTableContainer").load(`search_offers.php?search_item=${encodeURIComponent(searchTerm)}&currency_type=${currencyType}`, function() {
+        $("#offersTableContainer").load(`src-a/search_offers.php?search_item=${encodeURIComponent(searchTerm)}&currency_type=${currencyType}`, function() {
             initializeMap(); // Call the function after the content is loaded
         });
     }

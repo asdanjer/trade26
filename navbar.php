@@ -49,7 +49,7 @@
 $(document).ready(function() {
   $("#onlinePlayersBtn").click(function() {
     $.ajax({
-      url: "fetch_players.php",
+      url: "src-a/fetch_players.php",
       type: "GET",
       dataType: "json", // Expecting JSON response
       success: function(data) {

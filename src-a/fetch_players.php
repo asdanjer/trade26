@@ -6,8 +6,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }?>
 <?php
-require __DIR__ . '/src/MinecraftQuery.php';
-require __DIR__ . '/src/MinecraftQueryException.php';
+require   '../src/MinecraftQuery.php';
+require   '../src/MinecraftQueryException.php';
 
 use xPaw\MinecraftQuery;
 use xPaw\MinecraftQueryException;

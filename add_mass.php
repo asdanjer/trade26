@@ -16,7 +16,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <body>
 <div class="container mt-5">
     <h2>Mass Submit Offers</h2>
-    <form id="massOfferForm" class="mt-4" action="submit_mass_offers.php" method="POST">
+    <form id="massOfferForm" class="mt-4" action="src-a/submit_mass_offers.php" method="POST">
 	    <!-- Button to add a new item row -->
         <button type="button" id="addItem" class="btn btn-secondary">Add Item</button>
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
             var sellerName = $(this).val();
             if (sellerName.length > 0) { // Check if seller name input is not empty
                 $.ajax({
-                    url: 'get_shops_by_seller.php', // The PHP script that returns shops for a given seller
+                    url: 'src-a/get_shops_by_seller.php', // The PHP script that returns shops for a given seller
                     type: 'POST',
                     dataType: 'json', // Expect a JSON response
                     data: {sellerName: sellerName}, // Match the key expected by your PHP script
@@ -136,7 +136,7 @@ $(document).ready(function() {
         var inputVal = $(this).val();
 		console.log("Searching for:", inputVal); //
         $.ajax({
-            url: "get_sellers.php",
+            url: "src-a/get_sellers.php",
             type: "POST",
             data: { searchTerm: inputVal },
             success: function(data){
@@ -165,7 +165,7 @@ $(document).ready(function() {
 	function loadShopsForSeller(selectedSeller) {
     console.log("Loading shops for seller:", selectedSeller);
     $.ajax({
-        url: "get_shops_by_seller.php",
+        url: "src-a/get_shops_by_seller.php",
         type: "POST",
         data: { sellerName: selectedSeller },
         dataType: "json",

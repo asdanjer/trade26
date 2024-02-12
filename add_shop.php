@@ -23,7 +23,7 @@ if (isset($_SESSION['success_message'])) {
 
     <div class="container">
         <h2>Add New Shop</h2>
-        <form action="insert_shop.php" method="post">
+        <form action="src-a/insert_shop.php" method="post">
             <div class="mb-3">
                 <label for="shopName" class="form-label">Shop Name</label>
                 <input type="text" class="form-control" id="shopName" name="name" required>
