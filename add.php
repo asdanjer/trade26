@@ -36,6 +36,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <div class="mb-3">
             <label for="itemName" class="form-label">Item</label>
             <input type="text" class="form-control" id="itemName" name="item_name" required>
+            <div id="itemSuggestions" class="list-group"></div>
+
         </div>
         <div class="mb-3">
             <label for="itemDescription" class="form-label">Item Description (Optional)</label>
@@ -147,6 +149,40 @@ function loadShopsForSeller(selectedSeller) {
                 }
             });
         });
+        $("#itemName").on("input", function() {
+    clearTimeout(debounceTimeout); // Reuse the existing debounceTimeout variable
+    debounceTimeout = setTimeout(() => {
+        var inputVal = $(this).val();
+        $.ajax({
+            url: "get_items.php", // PHP script to fetch item names
+            type: "POST",
+            dataType: "json", // This ensures the response is parsed as JSON automatically
+            data: { searchTerm: inputVal },
+            success: function(data) {
+                $("#itemSuggestions").empty(); // Clear previous suggestions
+                if (data.length > 0) {
+                    // No need to parse 'data' as it's already a JavaScript object/array
+                    $.each(data, function(index, item) {
+                        // Append each suggestion to the suggestions container
+                        $("#itemSuggestions").append(`<a href="#" class="list-group-item list-group-item-action" data-item="${item.name}">${item.name}</a>`);
+                    });
+
+                    // Make the suggestions clickable
+                    $("#itemSuggestions a").on("click", function() {
+                        $("#itemName").val($(this).data("item")); // Set the input value to the selected suggestion
+                        $("#itemSuggestions").empty(); // Clear suggestions
+                    });
+                }
+            }
+        });
+    }, 100); // Adjust debounce delay
+});
+$("#itemName").on("blur", function() {
+    setTimeout(function() {
+        $("#itemSuggestions").empty(); // Clear suggestions with a slight delay
+    }, 200); // Delay to allow click event on suggestions to be processed
+});
+
     });
 </script>
 
