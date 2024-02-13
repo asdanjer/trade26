@@ -10,7 +10,16 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <head>
     <title>Trade Offers</title>
 <?php include 'navbar.php'; ?>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+<!-- DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- DataTables Bootstrap 5 JS -->
+<!-- Bootstrap 5 Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <div class=".container-fluid">
@@ -34,11 +43,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
         </div>
+        <div class="my-datatable">
         <div class="offers-table col-md-10" style="padding-left: 20px >
                 <div class="table-responsive" id="offersTableContainer">
                 </div>
 		</div>
-
+        </div>
             <div class="map-container">
                 <img src="sd.png" alt="Trade Map" class="map-image" id="mapImage">
                 <div id="blinkingDot"></div>
@@ -126,14 +136,19 @@ body {
     z-index: 10;
     /* Remove left and top styles if set elsewhere */
 	animation: blink 1s infinite; /* Adjust duration as needed */
+   
 
 }
+
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
-
+.row {
+    /* Adjust these properties as needed */
+    display: block !important;
+}
 </style>
 <script>
 $(document).ready(function() {
@@ -153,6 +168,14 @@ $(document).ready(function() {
         var currencyType = $('#currencyType').val();
         $("#offersTableContainer").load(`src-a/search_offers.php?search_item=${encodeURIComponent(searchTerm)}&currency_type=${currencyType}`, function() {
             initializeMap(); // Call the function after the content is loaded
+            $('#internalTable').DataTable({
+        "responsive": true, // For responsive tables
+        "autoWidth": false, // To prevent automatic column width adjustments
+        "searching": false, // Disable search bar
+        "lengthChange": false, // Disable page length change
+
+    });
+
         });
     }
 	// Update the currency and table when the currency type changes
@@ -244,10 +267,8 @@ $(document).on('mouseenter', 'tr', function() {
 	console.log(latitude, longitude, location)
 });
 
-
 });
 
 </script>
-	
 </body>
 </html>

@@ -44,7 +44,7 @@ if (isset($_SESSION['success_message'])) {
                 <label class="form-label">Map Location</label>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="X Coordinate" name="map_location_x" >
-                    <input type="text" class="form-control" placeholder="Y Coordinate" name="map_location_y" >
+                    <input type="text" class="form-control" placeholder="Z Coordinate" name="map_location_y" >
                 </div>
             </div>
 			<!-- Inside the <form> element, add the following field for the owner's name -->

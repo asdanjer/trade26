@@ -24,7 +24,7 @@ $conversionRates = [
     'diamond_blocks' => 1/9, 
     'lerokko_coins' => 10, 
 ];
-echo "<table class='table table-striped'><thead><tr><th>Item</th><th>Description</th><th>Quantity</th><th>Price</th><th>Address</th><th>Location</th><th>Seller</th><th>In Stock</th></tr></thead><tbody>";
+echo "<table class='table table-striped' id='internalTable'><thead><tr><th>Item</th><th>Description</th><th>Quantity</th><th>Price</th><th>Address</th><th>Location</th><th>Seller</th><th>In Stock</th></tr></thead><tbody>";
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -139,5 +139,6 @@ $(document).ready(function(){
             }
         });
     });
+    
 });
 </script>
